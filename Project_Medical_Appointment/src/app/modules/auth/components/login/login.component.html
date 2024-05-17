@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="container">
+    <h1>Login</h1>
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="col-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input 
+                    matInput
+                    formControlName="email"
+                    >
+                <mat-error>O campo Data Nasc. é obrigatório</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input 
+                    matInput
+                    formControlName="password"
+                >
+                <mat-error>O campo Data Nasc. é obrigatório</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <button mat-flat-button color="primary" [disabled]="form.invalid">
+                Salvar
+              </button>
+        </div>
+
+
+    </form>
+</div>
