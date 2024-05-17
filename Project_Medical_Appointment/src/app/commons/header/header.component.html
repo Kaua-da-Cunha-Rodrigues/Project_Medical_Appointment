@@ -4,12 +4,25 @@
     </button>
     <span>Projeto Final</span>
     <span class="example-spacer"></span>
-    <button mat-button aria-label="Example icon-button with heart icon">
+    <button 
+      mat-button 
+      aria-label="Example icon-button with heart icon"
+      routerLink="/appointment/create"
+      >
       Criar Consulta
     </button>
-    <button mat-button class="me-3" aria-label="Example icon-button with share icon">
+    <button 
+      mat-button 
+      class="me-3" 
+      aria-label="Example icon-button with share icon"
+      routerLink="/appointment/list"
+      >
       Consultas
     </button>
 
-    <button mat-flat-button color="primary">Login</button>
+    <button 
+      mat-flat-button 
+      color="primary"
+      routerLink="/auth/login"
+      >Login</button>
 </mat-toolbar>
