@@ -1,32 +1,43 @@
 <div class="container">
-    <h1>Login</h1>
+    <h1 class="mt-5">Login</h1>
     <form [formGroup]="form" (ngSubmit)="login()">
-        <div class="col-4">
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input 
-                    matInput
-                    formControlName="email"
-                    >
-                <mat-error>O campo Data Nasc. é obrigatório</mat-error>
-            </mat-form-field>
-        </div>
-        <div class="col-4">
-            <mat-form-field appearance="outline">
-                <mat-label>Senha</mat-label>
-                <input 
-                    matInput
-                    formControlName="password"
-                >
-                <mat-error>O campo Data Nasc. é obrigatório</mat-error>
-            </mat-form-field>
-        </div>
-        <div class="col-4">
-            <button mat-flat-button color="primary" [disabled]="form.invalid">
-                Salvar
-              </button>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input
+                        type="email"
+                        matInput
+                        formControlName="email"
+                        >
+                    <mat-error>O campo email é obrigatório</mat-error>
+                </mat-form-field>
+            </div>
         </div>
 
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input
+                        type="password"
+                        matInput
+                        formControlName="password"
+                    >
+                    <mat-error>O campo senha é obrigatório</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-3 d-flex justify-content-between">
+                <button mat-flat-button color="primary" [disabled]="form.invalid">
+                    Entrar
+                </button>
+                <button mat-stroked-button color="primary" routerLink="/auth/register">Cadastrar-se</button>
+            </div>
+        </div>
 
     </form>
 </div>
