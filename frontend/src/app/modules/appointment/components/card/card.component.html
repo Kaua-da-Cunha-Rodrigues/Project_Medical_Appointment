@@ -1,17 +1,25 @@
-<mat-card>
-  <mat-card-header>
-    <!-- <span class="tag-status status-canceled">Consulta Cancelada</span> -->
-    <span class="tag-status status-scheduled">Agendada</span>
-    <!-- <span class="tag-status status-completed">Concluída</span> -->
-</mat-card-header>
-  <mat-card-content>
-    <mat-card-title>Sábado, 20/02 - 12:00</mat-card-title>
-    <mat-card-subtitle class="specialty">Especialidade</mat-card-subtitle>
-    <mat-card-subtitle>Doctor Name</mat-card-subtitle>
-    <span class="observation">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur, ipsum.</span>
-  </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-button>Editar</button>
-    <button mat-button color="warn">Cancelar</button>
-  </mat-card-actions>
-</mat-card>
+<div class="container">
+  <div class="row">
+    @for (appointment of appointments; track $index) {
+    <div class="col-3">
+      <mat-card>
+        <mat-card-header>
+          <span class="tag-status status-scheduled">Agendada</span>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-title>{{ appointment.date }} - {{appointment.time}}</mat-card-title>
+          <mat-card-subtitle><b>Especialidade:</b> {{ appointment.specialty }}</mat-card-subtitle>
+          <mat-card-subtitle><b>Doutor(a):</b> {{ appointment.doctor }}</mat-card-subtitle>
+          <span class="observation">{{ appointment.obs}}</span>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="editAppointment(appointment.id!)">Editar</button>
+          <button mat-button color="warn" (click)="openModal(appointment.id!)">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }@empty {
+    <div class="col-12 text-center">Nenhum produto</div>
+    }
+  </div>
+</div>

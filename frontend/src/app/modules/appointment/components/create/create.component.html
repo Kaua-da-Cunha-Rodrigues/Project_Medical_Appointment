@@ -1,1 +1,56 @@
-<p>create works!</p>
+<div class="container">
+    <h1>Criar Consulta</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="row mb-3">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Especialidade</mat-label>
+                    <input matInput formControlName="specialty">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Doutor</mat-label>
+                    <input matInput formControlName="doctor">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Escolha a data</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Horário</mat-label>
+                    <input type="time" matInput formControlName="time">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput noresize formControlName="obs"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-4">
+                <button mat-flat-button color="primary">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>
