@@ -9,5 +9,5 @@ import { CardComponent } from '../card/card.component';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  
 }

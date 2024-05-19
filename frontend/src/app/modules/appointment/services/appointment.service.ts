@@ -1,16 +1,39 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppModel } from '../models/appointment.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
 
-  constructor() { }
+  apiUrl = `${environment.API_URL}/appointments`
 
+  constructor(private http: HttpClient) { }
 
-  //função para ser utilizada para enviar o token de validação das funções
+  getAppointments(): Observable<AppModel []>{
+    return this.http.get<AppModel[]>(this.apiUrl, this.setHeaders())
+  }
+  
+  getAppointmentById(id: string): Observable<AppModel>{
+   return this.http.get<AppModel>(`${this.apiUrl}/${id}`, this.setHeaders())
+   
+ }
+
+  createAppointment(appointmeint: AppModel): Observable<void>{
+    return this.http.post<void>(this.apiUrl, appointmeint, this.setHeaders())
+  }
+
+  updateAppointment(id: string, appointmeint: AppModel): Observable<void>{
+    return this.http.put<void>(`${this.apiUrl}/${id}`, appointmeint, this.setHeaders())  
+  }
+
+  deleteAppointment(id: string): Observable<void>{
+   return this.http.delete<void>(`${this.apiUrl}/${id}`, this.setHeaders()) 
+  }
+
   private setHeaders(){
     const token = localStorage.getItem(environment.TOKEN_KEY) ?? ''
 
