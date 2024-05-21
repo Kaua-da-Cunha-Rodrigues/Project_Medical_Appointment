@@ -1,5 +1,11 @@
 <div class="container">
-    <h1>Criar Consulta</h1>
+    @if(id){
+        <h1>Editar Consulta</h1>
+    }
+    @else{
+        <h1>Criar Consulta</h1>
+    }
+    
 
     <form [formGroup]="form" (ngSubmit)="onSave()">
         <div class="row mb-3">
@@ -46,6 +52,21 @@
                 </mat-form-field>
             </div>
         </div>
+
+        @if (id){
+            <div class="row mb-3" >
+                <div class="col-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                          <mat-option value="SCHEDULED" hidden>Agendar</mat-option>
+                          <mat-option value="DONE">Concluir</mat-option>
+                          <mat-option value="CANCELED">Cancelar</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+            </div>
+        }
 
         <div class="row mb-3">
             <div class="col-4">

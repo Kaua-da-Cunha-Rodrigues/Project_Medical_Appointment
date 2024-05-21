@@ -22,6 +22,5 @@ export class AuthService {
 
   login(user: User): Observable<AuthUser>{
     return this.http.post<AuthUser>(`${this.apiUrl}/login`, user)
-    
   }
 }

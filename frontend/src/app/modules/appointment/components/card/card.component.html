@@ -1,25 +1,41 @@
 <div class="container">
   <div class="row">
     @for (appointment of appointments; track $index) {
-    <div class="col-3">
-      <mat-card>
-        <mat-card-header>
-          <span class="tag-status status-scheduled">Agendada</span>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-card-title>{{ appointment.date }} - {{appointment.time}}</mat-card-title>
-          <mat-card-subtitle><b>Especialidade:</b> {{ appointment.specialty }}</mat-card-subtitle>
-          <mat-card-subtitle><b>Doutor(a):</b> {{ appointment.doctor }}</mat-card-subtitle>
-          <span class="observation">{{ appointment.obs}}</span>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-button (click)="editAppointment(appointment.id!)">Editar</button>
-          <button mat-button color="warn" (click)="openModal(appointment.id!)">Cancelar</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+      <div class="col-3 m-2">
+        <mat-card>
+
+          <mat-card-header>
+            @switch (appointment.status) {
+            @case ('SCHEDULED') {
+            <span class="tag-status status-scheduled">Agendada</span>
+            }
+            @case ('CANCELED') {
+            <span class="tag-status status-canceled">Cancelada</span>
+            }
+            @case ('DONE'){
+            <span class="tag-status status-completed">Concluída</span>
+            }
+            }
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-card-title>{{ appointment.date | date: "dd/MM/YYYY" }} - {{appointment.time}}</mat-card-title>
+            <mat-card-subtitle><b>Especialidade:</b> {{ appointment.specialty }}</mat-card-subtitle>
+            <mat-card-subtitle><b>Doutor(a):</b> {{ appointment.doctor }}</mat-card-subtitle>
+            <span class="observation">{{ appointment.obs}}</span>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            @if (appointment.status != 'CANCELED' && appointment.status != 'DONE') {
+            <button mat-button (click)="editAppointment(appointment.id!)">Editar</button>
+            }
+            <button mat-button color="warn" (click)="openModal(appointment.id!)">Excluir</button>
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
     }@empty {
-    <div class="col-12 text-center">Nenhum produto</div>
+      <div class="col-12 text-center">Nenhuma consulta</div>
     }
   </div>
 </div>

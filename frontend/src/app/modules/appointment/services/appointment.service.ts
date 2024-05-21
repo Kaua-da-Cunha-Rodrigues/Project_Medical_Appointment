@@ -20,7 +20,7 @@ export class AppointmentService {
   getAppointmentById(id: string): Observable<AppModel>{
    return this.http.get<AppModel>(`${this.apiUrl}/${id}`, this.setHeaders())
    
- }
+  }
 
   createAppointment(appointmeint: AppModel): Observable<void>{
     return this.http.post<void>(this.apiUrl, appointmeint, this.setHeaders())

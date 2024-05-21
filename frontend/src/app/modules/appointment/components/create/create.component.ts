@@ -3,7 +3,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppModel } from '../../models/appointment.model';
@@ -40,10 +40,11 @@ export class CreateComponent implements OnInit{
   buildForm(): void{
     this.form = new FormGroup({
       specialty: new FormControl(null, [Validators.required]),
-      doctor: new FormControl(),
-      date: new FormControl(),
-      time: new FormControl(),
-      obs: new FormControl()
+      doctor: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required]),
+      time: new FormControl(null, [Validators.required]),
+      obs: new FormControl(null, [Validators.required]),
+      status: new FormControl('SCHEDULED', [Validators.required])
     })
   }
 

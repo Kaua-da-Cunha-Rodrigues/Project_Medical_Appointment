@@ -4,5 +4,6 @@ export interface AppModel {
     doctor: string,
     date: string,
     time: string,
-    obs: string
+    obs: string,
+    status: string
 }
