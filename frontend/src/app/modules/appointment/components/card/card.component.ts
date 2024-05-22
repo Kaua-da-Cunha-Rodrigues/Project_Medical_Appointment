@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { first } from 'rxjs';
 import { DeleteModalComponent } from '../../../../commons/delete-modal/delete-modal.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -20,7 +21,7 @@ export class CardComponent implements OnInit{
 
   appointments?: AppModel[]
 
-  constructor(private appointmentService: AppointmentService, private dialog: MatDialog, private router: Router){}
+  constructor(public authService: AuthService, private appointmentService: AppointmentService, private dialog: MatDialog, private router: Router){}
 
   ngOnInit(): void {
     this.getAppointments() 
@@ -33,6 +34,8 @@ export class CardComponent implements OnInit{
     .subscribe({
       next: (response: AppModel[]) =>{
         this.appointments = response
+        console.log(this.appointments);
+        
       },
       error: (err) => {
         (console.log(err))

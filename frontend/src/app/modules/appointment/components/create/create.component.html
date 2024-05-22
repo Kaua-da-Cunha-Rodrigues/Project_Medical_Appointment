@@ -8,50 +8,74 @@
     
 
     <form [formGroup]="form" (ngSubmit)="onSave()">
-        <div class="row mb-3">
-            <div class="col-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Especialidade</mat-label>
-                    <input matInput formControlName="specialty">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Doutor</mat-label>
-                    <input matInput formControlName="doctor">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Escolha a data</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date">
-                    <mat-hint>DD/MM/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Horário</mat-label>
-                    <input type="time" matInput formControlName="time">
-                </mat-form-field>
-            </div>
-        </div>
+        @if(authService.checkRole() === 'USER'){
 
-        <div class="row mb-3">
-            <div class="col-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Descrição</mat-label>
-                    <textarea matInput noresize formControlName="obs"></textarea>
-                </mat-form-field>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <mat-form-field>
+                        <mat-label>Especialidade</mat-label>
+                        <mat-select>
+                          <mat-option value="alergologista">Alergologista</mat-option>
+                          <mat-option value="imunologistasistema imunológico">Imunologistasistema imunológico</mat-option>
+                          <mat-option value="anestesiologista">Anestesiologista</mat-option>
+                          <mat-option value="angiologista">Angiologista</mat-option>
+                          <mat-option value="cardiologistacirculatório">Cardiologistacirculatório</mat-option>
+                          <mat-option value="cirurgista Geral">Cirurgista Geral</mat-option>
+                          <mat-option value="cirurgista Plástica">Cirurgista Plástica</mat-option>
+                          <mat-option value="dermatologista">Dermatologista</mat-option>
+                          <mat-option value="endocrinologista">Endocrinologista</mat-option>
+                          <mat-option value="gastroenterologista">Gastroenterologista</mat-option>
+                          <mat-option value="geriatria">Geriatria</mat-option>
+                          <mat-option value="ginecologista">Ginecologista</mat-option>
+                          <mat-option value="obstetrícia">Obstetrícia</mat-option>
+                          <mat-option value="hematologista">Hematologista</mat-option>
+                          <mat-option value="hepatologista">Hepatologista</mat-option>
+                          <mat-option value="infectologista">Infectologista</mat-option>
+                          <mat-option value="nefrologista">Nefrologista</mat-option>
+                          <mat-option value="neurologista">Neurologista</mat-option>
+                          <mat-option value="nutrologista">Nutrologista</mat-option>
+                          
+                        </mat-select>
+                      </mat-form-field>
+                </div>
             </div>
-        </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Doutor</mat-label>
+                        <input matInput formControlName="doctor">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Escolha a data</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date">
+                        <mat-hint>DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Horário</mat-label>
+                        <input type="time" matInput formControlName="time">
+                    </mat-form-field>
+                </div>
+            </div>
+    
+            <div class="row mb-3">
+                <div class="col-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Descrição</mat-label>
+                        <textarea matInput noresize formControlName="obs"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        }
 
         @if (id){
             <div class="row mb-3" >
@@ -60,7 +84,9 @@
                         <mat-label>Status</mat-label>
                         <mat-select formControlName="status">
                           <mat-option value="SCHEDULED" hidden>Agendar</mat-option>
-                          <mat-option value="DONE">Concluir</mat-option>
+                          @if(authService.checkRole() === 'ADMIN'){
+                            <mat-option value="DONE">Concluir</mat-option>
+                          }
                           <mat-option value="CANCELED">Cancelar</mat-option>
                         </mat-select>
                       </mat-form-field>

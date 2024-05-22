@@ -10,6 +10,7 @@ import { AppModel } from '../../models/appointment.model';
 import { first } from 'rxjs';
 import { AppointmentService } from '../../services/appointment.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -24,7 +25,7 @@ export class CreateComponent implements OnInit{
   form!: FormGroup
   id?: string
 
-  constructor(private appointmentService: AppointmentService, private router: Router,private route: ActivatedRoute){}
+  constructor(public authService: AuthService, private appointmentService: AppointmentService, private router: Router,private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.buildForm()  

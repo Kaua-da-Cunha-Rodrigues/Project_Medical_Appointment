@@ -1,3 +1,5 @@
+import { UserDatas } from "../../auth/models/user.model";
+
 export interface AppModel {
     id?: string,
     specialty: string,
@@ -5,5 +7,6 @@ export interface AppModel {
     date: string,
     time: string,
     obs: string,
-    status: string
+    status: string,
+    User: UserDatas
 }

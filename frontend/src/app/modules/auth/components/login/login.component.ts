@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
     this.authService.login(user).pipe(first()).subscribe({
       next: (res) =>{
         localStorage.setItem(environment.TOKEN_KEY, `Bearer ${res.token}`)
+        localStorage.setItem(environment.USER_ROLE, res.user.role)
         
         this.router.navigate(['appointment', 'list'])
       },
