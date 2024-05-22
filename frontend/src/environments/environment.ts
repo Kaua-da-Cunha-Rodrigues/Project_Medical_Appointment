@@ -1,4 +1,5 @@
 export const environment = {
     API_URL: 'http://localhost:3000',
-    TOKEN_KEY: 'TOKEN'
+    TOKEN_KEY: 'TOKEN',
+    USER_ROLE: 'USER'
 };

@@ -6,11 +6,13 @@ import { CreateComponent } from './modules/appointment/components/create/create.
 import { ListComponent } from './modules/appointment/components/list/list.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
         path: 'appointment',
         component: AppointmentComponent,
+        canActivate: [authGuard],
         children:[
             {
                 path: 'create',

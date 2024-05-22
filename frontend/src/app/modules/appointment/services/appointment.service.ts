@@ -14,31 +14,23 @@ export class AppointmentService {
   constructor(private http: HttpClient) { }
 
   getAppointments(): Observable<AppModel []>{
-    return this.http.get<AppModel[]>(this.apiUrl, this.setHeaders())
+    return this.http.get<AppModel[]>(this.apiUrl)
   }
   
   getAppointmentById(id: string): Observable<AppModel>{
-   return this.http.get<AppModel>(`${this.apiUrl}/${id}`, this.setHeaders())
+   return this.http.get<AppModel>(`${this.apiUrl}/${id}`)
    
   }
 
   createAppointment(appointmeint: AppModel): Observable<void>{
-    return this.http.post<void>(this.apiUrl, appointmeint, this.setHeaders())
+    return this.http.post<void>(this.apiUrl, appointmeint)
   }
 
   updateAppointment(id: string, appointmeint: AppModel): Observable<void>{
-    return this.http.put<void>(`${this.apiUrl}/${id}`, appointmeint, this.setHeaders())  
+    return this.http.put<void>(`${this.apiUrl}/${id}`, appointmeint)  
   }
 
   deleteAppointment(id: string): Observable<void>{
-   return this.http.delete<void>(`${this.apiUrl}/${id}`, this.setHeaders()) 
-  }
-
-  private setHeaders(){
-    const token = localStorage.getItem(environment.TOKEN_KEY) ?? ''
-
-    const headers: HttpHeaders = new HttpHeaders().set('Authorization', token)  
-
-    return { headers }
+   return this.http.delete<void>(`${this.apiUrl}/${id}`) 
   }
 }
